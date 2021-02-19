@@ -1,0 +1,28 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -L",
+    "forever": "forever index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julianactrl/api-mercadolibre.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/julianactrl/api-mercadolibre/issues"
+  },
+  "homepage": "https://github.com/julianactrl/api-mercadolibre#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "install": "^0.13.0",
+    "morgan": "^1.10.0",
+    "npm": "^7.5.4"
+  }
+}
