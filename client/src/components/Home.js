@@ -1,5 +1,7 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState }  from 'react';
 import axios from 'axios'
+
+// ---- componentes ---------
 import Catalogo from './Catalogo'
 import Footer from './Footer';
 import Header from './Header';
@@ -7,13 +9,14 @@ import SearchBar from './SearchBar';
 import Pagination from './Pagination';
 
 const Home = () => {
+    
     const [error, setError] = useState(false);
-    // Products ------------------------------------------->
+    // ------------ PRODUCTS -----------------------------
     const [products, setProducts] = useState([]);
     const [productsResult, setProductsResult] = useState([]);
     const [input, setInput] = useState("");
 
-    // Pagination ----------------------------------------->
+    // ----------- PAGINATION -----------------------------
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage] = useState(12);
 
@@ -47,7 +50,7 @@ const Home = () => {
             <Header />
             <SearchBar onSearch={onSearch}/>
             <Catalogo  
-            products={products}
+            products={currentProducts}
             //addToCart={addToCart}
             error={error}/>
             <Pagination 
