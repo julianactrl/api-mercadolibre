@@ -13,9 +13,9 @@ const Filter = (props) => {
               <select 
               value={props.sort} onChange={props.sortProducts}
               class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                <option>Precio</option>
-                <option>El precio más bajo</option>
-                <option>El precio más alto</option>
+                <option value="price">Precio</option>
+                <option value="lowest">El precio más bajo</option>
+                <option value="highest">El precio más alto</option>
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg
@@ -32,8 +32,8 @@ const Filter = (props) => {
               value={props.condition} onChange={props.filterProducts}
               class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
                 <option>Condicion</option>
-                <option>Nuevo</option>
-                <option>Usado</option>
+                <option value="Nuevo">Nuevo</option>
+                <option value="Usado">Usado</option>
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg

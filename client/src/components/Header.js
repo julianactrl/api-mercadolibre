@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
+import Category from './Category';
 
 
 export default function Header()  {
+
+    const [categories, setCategories] = useState([]);
 
     return (
         
@@ -42,12 +45,12 @@ export default function Header()  {
                         </div>
                     </div>
                     <nav   class="sm:flex sm:justify-center sm:items-center mt-4">
-                        <div class="flex flex-col sm:flex-row">
-                            <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Shop</a>
-                            <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Products</a>
-                            <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Categories</a>
+                        <ul class="flex flex-col sm:flex-row">
+                            <li class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Shop</li>
+                            <li class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Products</li>
+                            <li class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"><Category searchCategory={searchCategory} categories={categories}/></li>
                            
-                        </div>
+                        </ul>
                     </nav>
                     
                 </div>      

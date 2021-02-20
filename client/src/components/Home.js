@@ -76,7 +76,7 @@ const Home = () => {
     const filterProducts = (event) => {
       let productCondition = event.target.value;
   
-      if (productCondition === "new" || productCondition === "used") {
+      if (productCondition === "Nuevo" || productCondition === "Usado") {
         setCondition(productCondition);
         setProducts(
           productsResult.filter(
