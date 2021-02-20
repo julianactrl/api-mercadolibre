@@ -18,7 +18,7 @@ const Catalogo = ({ products, addToCart, error }) => {
           
           {error ? (<div>Oppps! algo salio mal</div>) : (  
           <div class="">
-            <h3 class="text-gray-600 text-2xl font-medium">Store</h3>
+            <h3 class="text-gray-600 text-2xl font-medium"></h3>
             <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
               {products.map((product) => {
               return (

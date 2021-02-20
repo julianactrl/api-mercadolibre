@@ -27,8 +27,7 @@ const ProductCard = (props) => {
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{props.title}</div>
         <p class="text-gray-700 text-base">
-        <b>Price</b>: $ {Intl.NumberFormat("de-DE").format(props.price)}{" "}
-                {props.currency_id}
+          <b>Precio</b>: $ {Intl.NumberFormat("de-DE").format(props.price)}{" "}{props.currency_id}
         </p>
       </div>
       <div class="px-6 pt-4 pb-2">
