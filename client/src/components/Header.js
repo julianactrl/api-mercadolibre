@@ -1,10 +1,23 @@
-import React, {useState} from 'react';
+import React, { useState }  from 'react';
+import axios from 'axios'
 import Category from './Category';
+
 
 
 export default function Header()  {
 
+    //-------- CATEGORIES ------------------------------//
     const [categories, setCategories] = useState([]);
+    const searchCategory = () => {
+      axios
+        .get(`http://localhost:3001/api/categories`)
+        .then((categories) => {
+          setCategories(categories.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
 
     return (
         
@@ -49,10 +62,8 @@ export default function Header()  {
                             <li class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Shop</li>
                             <li class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Products</li>
                             <li class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"><Category searchCategory={searchCategory} categories={categories}/></li>
-                           
                         </ul>
-                    </nav>
-                    
+                    </nav>                    
                 </div>      
             </header>
         </div>

@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 
-export default function Category({ searchCategory, categories }) {
+const Category = ({ searchCategory, categories }) => {
 
   const [input, setInput] = useState("");
   const [showResults, setShowResults] = useState(false);
 
+  const regex = / /gi;
   return (
     <>
       <form
-        className="orderCat"
         onSubmit={(e) => {
           e.preventDefault();
           searchCategory(input);
-          setInput("");
+          setInput("")
         }}
       >
         <input
-          className="send"
           type="submit"
           value="Categories"
           onClick={() => setShowResults(!showResults)}
@@ -24,11 +23,11 @@ export default function Category({ searchCategory, categories }) {
       </form>
 
       {showResults ? (
-        <div className="results">
+        <select>
           {categories.map((cat) => {
             return (
               <option
-                className="list"
+                
                 key={cat.id}
                 onClick={() =>
                   window.open(
@@ -46,8 +45,10 @@ export default function Category({ searchCategory, categories }) {
               </option>
             );
           })}
-        </div>
+        </select>
       ) : null}
     </>
   );
 }
+
+export default Category;

@@ -10,6 +10,8 @@ import Pagination from './Pagination';
 import Filter from './Filter';
 
 const Home = () => {
+
+  
     
   // ------------ ERRORS -----------------------------//
     const [error, setError] = useState(false);
@@ -93,6 +95,7 @@ const Home = () => {
         <>
             <Header />
             <SearchBar onSearch={onSearch}/>
+            
             <Filter
               count={products.length}
               sort={sort}
