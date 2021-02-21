@@ -9,9 +9,7 @@ import SearchBar from './SearchBar';
 import Pagination from './Pagination';
 import Filter from './Filter';
 
-const Home = () => {
-
-  
+const Home = () => { 
     
   // ------------ ERRORS -----------------------------//
     const [error, setError] = useState(false);

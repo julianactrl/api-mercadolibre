@@ -19,7 +19,7 @@ const ProductCard = (props) => {
     
     <div class="rounded overflow-hidden shadow-lg border-2">
       <img 
-      class="w-500 h-300  " 
+      class="w-full" 
       src={props.thumbnail}
       alt="thumbnail"
       onClick={() => window.open(props.permalink, "_blank")}/>

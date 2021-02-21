@@ -57,12 +57,8 @@ export default function Header()  {
                             </div>
                         </div>
                     </div>
-                    <nav   class="sm:flex sm:justify-center sm:items-center mt-4">
-                        <ul class="flex flex-col sm:flex-row">
-                            <li class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Shop</li>
-                            <li class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Products</li>
-                            <li class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"><Category searchCategory={searchCategory} categories={categories}/></li>
-                        </ul>
+                    <nav   class="sm:flex sm:justify-center sm:items-center mt-4">                                                 
+                        <Category searchCategory={searchCategory} categories={categories}/>                       
                     </nav>                    
                 </div>      
             </header>
