@@ -40,11 +40,11 @@ const Category = ({ searchCategory, categories }) => {
       </form>
 
       {showResults ? (
-        <select className="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
+        <ul className="bg-white border rounded-sm transform group-hover:scale-100 absolute 
         transition duration-150 ease-in-out origin-top min-w-32">
           {categories.map((cat) => {
             return (
-              <option
+              <li
                 class="rounded-sm px-3 py-1 hover:bg-gray-100"
                 key={cat.id}
                 onClick={() =>
@@ -60,10 +60,10 @@ const Category = ({ searchCategory, categories }) => {
                 style={{ cursor: `pointer` }}
               >
                 {cat.name}
-              </option>
+              </li>
             );
           })}
-        </select>
+        </ul>
       ) : null}
     </div>
   );
