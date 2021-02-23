@@ -12,7 +12,8 @@ const Filter = (props) => {
             <div className="relative">
               <select 
               value={props.sort} onChange={props.sortProducts}
-              className="h-full border-none block appearance-none w-full text-gray-600 py-2 px-4 pr-8 bg-yellow-200">
+              style={{background:`#fee600`}}
+              className="h-full border-none block appearance-none w-full text-gray-600 py-2 px-4 pr-8">
                 <option value="price">Precio</option>
                 <option value="lowest">El precio más bajo</option>
                 <option value="highest">El precio más alto</option>
