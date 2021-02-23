@@ -18,12 +18,12 @@ const Category = ({ searchCategory, categories }) => {
         }}
       >
         <button
-          className="outline-none focus:outline-none border px-3 py-1 bg-white rounded-sm flex items-center min-w-32"
+          className="outline-none focus:outline-none border-none px-3 py-1 rounded-sm flex items-center min-w-32"
           type="submit"
           value="Categories"
           onClick={() => setShowResults(!showResults)}
         >
-          <span className="pr-1 font-semibold flex-1">Categories</span>
+          <span className="pr-1 font-light text-gray flex-1">Categorías</span>
           <span>
             <svg
               class="fill-current h-4 w-4 transform group-hover:-rotate-180
@@ -40,16 +40,16 @@ const Category = ({ searchCategory, categories }) => {
       </form>
 
       {showResults ? (
-        <ul className="bg-white border rounded-sm transform group-hover:scale-100 absolute 
+        <ul className="bg-black z-10 text-white border rounded-sm transform group-hover:scale-100 absolute 
         transition duration-150 ease-in-out origin-top min-w-32">
-          {categories.map((cat) => {
+          {categories.map((c) => {
             return (
               <li
-                class="rounded-sm px-3 py-1 hover:bg-gray-100"
-                key={cat.id}
+                class="rounded-sm px-3 py-1 hover:bg-gray-600"
+                key={c.id}
                 onClick={() =>
                   window.open(
-                    `https://www.mercadolibre.com.ar/c/${cat.name
+                    `https://www.mercadolibre.com.ar/c/${c.name
                       .replace(regex, "-")
                       .normalize("NFD")
                       .replace(/[\u0300-\u036f]/g, "")
@@ -59,7 +59,7 @@ const Category = ({ searchCategory, categories }) => {
                 }
                 style={{ cursor: `pointer` }}
               >
-                {cat.name}
+                {c.name}
               </li>
             );
           })}

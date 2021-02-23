@@ -2,24 +2,24 @@ import React from "react";
 
 const Filter = (props) => {
   return (
-    <div class="container mx-auto px-4 sm:px-8">
-      <div class="py-8">
-        <div>
-          <h2 class="text-2xl font-semibold leading-tight">Store</h2>
-        </div>
-        <div class="my-2 flex sm:flex-row flex-col">
-          <div class="flex flex-row mb-1 sm:mb-0 border-gray-400 ">
-            <div class="relative">
+    <div className="container mx-auto px-4 sm:px-8">
+      <div className="py-2">
+        {/* <div>
+          <h2 className="text-2xl font-semibold leading-tight">Store</h2>
+        </div> */}
+        <div className="my-2 flex justify-center sm:flex-row flex-col">
+          <div className="flex flex-row mb-1 sm:mb-0 ">
+            <div className="relative">
               <select 
               value={props.sort} onChange={props.sortProducts}
-              class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              className="h-full border-none block appearance-none w-full text-gray-600 py-2 px-4 pr-8 bg-yellow-200">
                 <option value="price">Precio</option>
                 <option value="lowest">El precio más bajo</option>
                 <option value="highest">El precio más alto</option>
               </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-600">
                 <svg
-                  class="fill-current h-4 w-4"
+                  className="fill-current h-4 w-4"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                 >
@@ -27,17 +27,18 @@ const Filter = (props) => {
                 </svg>
               </div>
             </div>
-            <div class="relative">
+            <div className="relative">
               <select 
               value={props.condition} onChange={props.filterProducts}
-              class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+              style={{background:`#fee600`}}
+              className="h-full border-none block appearance-none w-full text-gray-600 py-2 px-4 pr-8 ">
                 <option>Condicion</option>
                 <option value="Nuevo">Nuevo</option>
                 <option value="Usado">Usado</option>
               </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg
-                  class="fill-current h-4 w-4"
+                  className="fill-current h-4 w-4"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                 >
@@ -45,9 +46,9 @@ const Filter = (props) => {
                 </svg>
               </div>
             </div>
-            <div class="relative">
+            <div className="relative">
                 <div 
-                class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+                className="appearance-none h-full block appearance-none w-full text-gray-600 py-2 px-4 pr-8 leading-tight focus:outline-none ">
                   {/* <div> <b>{props.input}</b></div> */}
                   <div>{props.count} Resultados </div>
                 </div>            
