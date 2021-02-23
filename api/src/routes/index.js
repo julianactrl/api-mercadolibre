@@ -7,11 +7,10 @@ server.get("/api/search", cache(20), (req, res) => {
   const regex = /-I./;
 
   axios
-    .get(`https://api.mercadolibre.com/sites/MLA/search?q=tv&${product}`)
+    .get(`https://api.mercadolibre.com/sites/MLA/search?q=${product}`)
 
     .then((product) => {
       const result = product.data.results;
-      console.log('Soy result----->>' , result)
       if (result.length > 0) {
         let products = result.map((product) => {
           return {

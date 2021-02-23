@@ -26,7 +26,7 @@ const Category = ({ searchCategory, categories }) => {
           <span className="pr-1 font-light text-gray-600 flex-1">Categorías</span>
           <span>
             <svg
-              class="fill-current h-4 w-4 transform group-hover:-rotate-180
+              className="fill-current h-4 w-4 transform group-hover:-rotate-180
               transition duration-150 ease-in-out"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
@@ -45,7 +45,7 @@ const Category = ({ searchCategory, categories }) => {
           {categories.map((c) => {
             return (
               <li
-                class="rounded-sm px-3 py-1 hover:bg-gray-600"
+                className="rounded-sm px-3 py-1 hover:bg-gray-600"
                 key={c.id}
                 onClick={() =>
                   window.open(

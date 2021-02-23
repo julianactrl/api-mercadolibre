@@ -8,17 +8,15 @@ const Pagination = ({ productsPerPage, totalProducts, pagination }) => {
     }
 
     return(
-        <div class="flex justify-center">
-            <div class="flex rounded-md m-8">
+        <div className="flex justify-center">
+            <div className="flex rounded-md m-8">
             {pageNumbers.map((number) => (
                 <button
                  onClick={() => pagination(number)}
                  key={number}
-                 class="py-2 px-4 leading-tight bg-white border-2 border-gray-200 text-blue-700 ml-0 rounded-l hover:bg-yellow-200 hover:text-gray-600">
+                 className="py-2 px-4 leading-tight bg-white border-2 border-gray-200 text-blue-700 ml-0 rounded-l hover:bg-yellow-200 hover:text-gray-600">
                     <span>{number}</span>
                 </button>
-                
-                
             ))}
             </div>
         </div>

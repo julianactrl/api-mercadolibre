@@ -22,7 +22,7 @@ const Home = () => {
 
   // ----------- PAGINATION -----------------------------//
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(12);
+  const [productsPerPage] = useState(30);
 
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirtsProduct = indexLastProduct - productsPerPage;
@@ -30,21 +30,23 @@ const Home = () => {
   const pagination = (pageNumber) => setCurrentPage(pageNumber);
 
   // ----- SEARCHBAR ------------------------------------------//
+  const [search, setSearch] = useState('')
+  const [query, setQuery] = useState('tv')
 
   useEffect(() => {
     onSearch()
-  }, [])
+  }, [query])
+
   const onSearch = async (product) => {
-    
     setInput(product);
     console.log("soy product---->", product);
-    await axios
-      .get(`http://localhost:3001/api/search?q=tv&${product}`)
+    const element = await axios
+      .get(`http://localhost:3001/api/search?q=${query}||${product}`)
       .then((p) => {
+        console.log("soy la info----->", p);
         setProducts(p.data);
         setProductsResult(p.data);
         setError(false);
-        console.log("soy la info----->", p);
       })
       .catch((err) => {
         console.log("soy el error----------->>>", err);
@@ -60,11 +62,10 @@ const Home = () => {
   }, [])
 
   const searchCategory = async () => {
-    const data = await axios
+    await axios
       .get(`http://localhost:3001/api/categories`)
       .then((categories) => {
         setCategories(categories.data);
-        console.log(data)
       })
       .catch((err) => {
         console.log(err);
@@ -136,7 +137,7 @@ const Home = () => {
                   >
                     <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
                       ></path>
                     </svg>
@@ -161,9 +162,9 @@ const Home = () => {
                   <svg
                     className="h-5 w-5"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >

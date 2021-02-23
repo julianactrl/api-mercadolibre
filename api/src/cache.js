@@ -5,8 +5,6 @@ const cache = duration => {
         let key = 'cache' + req.url
         let cachedBody = mcache.get(key)
         if(cachedBody){
-            console.log("soy la key", key)
-            console.log("Soy el cachedBody ", cachedBody)
             res.send(cachedBody)
             return
         } else {
@@ -16,7 +14,6 @@ const cache = duration => {
                 mcache.put(key, body, duration * 1000)
                 res.sendResponse(body)
             }
-            console.log("me acaban de crear", cachedBody) 
             next();
         }
     }
