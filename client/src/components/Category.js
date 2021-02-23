@@ -23,7 +23,7 @@ const Category = ({ searchCategory, categories }) => {
           value="Categories"
           onClick={() => setShowResults(!showResults)}
         >
-          <span className="pr-1 font-light text-gray flex-1">Categorías</span>
+          <span className="pr-1 font-light text-gray-600 flex-1">Categorías</span>
           <span>
             <svg
               class="fill-current h-4 w-4 transform group-hover:-rotate-180
@@ -40,7 +40,7 @@ const Category = ({ searchCategory, categories }) => {
       </form>
 
       {showResults ? (
-        <ul className="bg-black z-10 text-white border rounded-sm transform group-hover:scale-100 absolute 
+        <ul className="bg-gray-800 z-10 text-white border rounded-sm transform group-hover:scale-100 absolute 
         transition duration-150 ease-in-out origin-top min-w-32">
           {categories.map((c) => {
             return (

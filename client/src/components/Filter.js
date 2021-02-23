@@ -2,7 +2,7 @@ import React from "react";
 
 const Filter = (props) => {
   return (
-    <div className="container mx-auto px-4 sm:px-8">
+    <>
       <div className="py-2">
         {/* <div>
           <h2 className="text-2xl font-semibold leading-tight">Store</h2>
@@ -34,8 +34,8 @@ const Filter = (props) => {
               style={{background:`#fee600`}}
               className="h-full border-none block appearance-none w-full text-gray-600 py-2 px-4 pr-8 ">
                 <option>Condicion</option>
-                <option value="Nuevo">Nuevo</option>
-                <option value="Usado">Usado</option>
+                <option value="new">Nuevo</option>
+                <option value="used">Usado</option>
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg
@@ -57,7 +57,7 @@ const Filter = (props) => {
           </div>
           </div>
       </div>
-    </div>
+    </>
   );
 };
 

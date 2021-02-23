@@ -16,7 +16,7 @@ const SearchBar = ({onSearch}) => {
         }}
         class="relative mt-6 max-w-lg mx-auto">
                 <input 
-                class="w-full border-2 p-2 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline" 
+                class="w-full border-none shadow-xl p-2 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline" 
                 placeholder="Buscar productos, marcas y más…"
                 type="text"
                 onChange={(e) => setInput(e.target.value)}

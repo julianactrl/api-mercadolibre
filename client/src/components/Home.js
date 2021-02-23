@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 // ---- componentes ---------
 import Catalogo from "./Catalogo";
 import Footer from "./Footer";
-import Header from "./Header";
 import SearchBar from "./SearchBar";
 import Pagination from "./Pagination";
 import Filter from "./Filter";
@@ -31,16 +30,21 @@ const Home = () => {
   const pagination = (pageNumber) => setCurrentPage(pageNumber);
 
   // ----- SEARCHBAR ------------------------------------------//
-  const onSearch = (product) => {
+
+  useEffect(() => {
+    onSearch()
+  }, [])
+  const onSearch = async (product) => {
+    
     setInput(product);
     console.log("soy product---->", product);
-    axios
+    await axios
       .get(`http://localhost:3001/api/search?q=tv&${product}`)
       .then((p) => {
-        console.log("soy la info----->", p);
         setProducts(p.data);
         setProductsResult(p.data);
         setError(false);
+        console.log("soy la info----->", p);
       })
       .catch((err) => {
         console.log("soy el error----------->>>", err);
@@ -50,11 +54,17 @@ const Home = () => {
 
   //-------- CATEGORIES ------------------------------//
   const [categories, setCategories] = useState([]);
-  const searchCategory = () => {
-    axios
+
+  useEffect(() => {
+    searchCategory()
+  }, [])
+
+  const searchCategory = async () => {
+    const data = await axios
       .get(`http://localhost:3001/api/categories`)
       .then((categories) => {
         setCategories(categories.data);
+        console.log(data)
       })
       .catch((err) => {
         console.log(err);
@@ -90,7 +100,7 @@ const Home = () => {
   const filterProducts = (event) => {
     let productCondition = event.target.value;
 
-    if (productCondition === "Nuevo" || productCondition === "Usado") {
+    if (productCondition === "new" || productCondition === "used") {
       setCondition(productCondition);
       setProducts(
         productsResult.filter(
@@ -116,24 +126,12 @@ const Home = () => {
                 <SearchBar onSearch={onSearch} />
               </div>
               <div className="flex items-center justify-end w-full">
-                <button className="text-gray-600 focus:outline-none mx-4 sm:mx-0">
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                </button>
+                
 
                 <div className="flex sm:hidden">
                   <button
                     type="button"
-                    className="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500"
+                    className="text-blue-600 hover:text-gray-500 focus:outline-none focus:text-gray-500"
                     aria-label="toggle menu"
                   >
                     <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
@@ -159,6 +157,19 @@ const Home = () => {
                 filterProducts={filterProducts}
                 input={input}
               />
+              <button className="text-gray-800 focus:outline-none mx-4 sm:mx-0">
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  </svg>
+                </button>
             </nav>
           </div>
         </header>

@@ -14,7 +14,7 @@ const Pagination = ({ productsPerPage, totalProducts, pagination }) => {
                 <button
                  onClick={() => pagination(number)}
                  key={number}
-                 class="py-2 px-4 leading-tight bg-white border-2 border-gray-200 text-blue-700 border-r-0 ml-0 rounded-l hover:bg-blue-200 hover:text-white">
+                 class="py-2 px-4 leading-tight bg-white border-2 border-gray-200 text-blue-700 ml-0 rounded-l hover:bg-yellow-200 hover:text-gray-600">
                     <span>{number}</span>
                 </button>
                 

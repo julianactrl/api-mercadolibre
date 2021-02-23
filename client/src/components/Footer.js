@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => (
   <footer class="bg-gray-200">
     <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-      <a href="#" class="hidden w-full text-gray-600 md:flex md:items-center">
+      <a href="#" class="hidden text-gray-600 md:flex md:items-center">
         <svg
           class="h-5 w-5"
           viewBox="0 0 24 24"

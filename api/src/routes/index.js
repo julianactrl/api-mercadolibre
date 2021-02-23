@@ -7,7 +7,7 @@ server.get("/api/search", cache(20), (req, res) => {
   const regex = /-I./;
 
   axios
-    .get(`https://api.mercadolibre.com/sites/MLA/search?q=${product}`)
+    .get(`https://api.mercadolibre.com/sites/MLA/search?q=tv&${product}`)
 
     .then((product) => {
       const result = product.data.results;
@@ -20,7 +20,7 @@ server.get("/api/search", cache(20), (req, res) => {
             price: product.price,
             currency_id: product.currency_id,
             available_quantity: product.available_quantity,
-            thumbnail: product.thumbnail, //.replace(regex, "-O."),
+            thumbnail: product.thumbnail.replace(regex, "-O."),
             condition: product.condition,
             permalink : product.permalink 
           };

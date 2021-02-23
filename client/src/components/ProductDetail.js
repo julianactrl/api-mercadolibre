@@ -1,10 +1,9 @@
 import React from 'react';
-import Header from './Header';
 
 const ProductDetail = () => {
     return(
         <>
-        <Header />
+    
         <div class="container mx-auto px-6">
             <div class="md:flex md:items-center">
                 <div class="w-full h-64 md:w-1/2 lg:h-96">
