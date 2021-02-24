@@ -1,5 +1,5 @@
 import React from "react";
-
+import addToCartAction from '../redux/cartDucks'
 // ----- Hooks react-redux ----------
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -28,6 +28,7 @@ const Cart = () => {
             <h3 className="text-sm text-gray-600">Producto Titulo</h3>
             <div className="flex items-center mt-2">
               <button className="text-gray-500 focus:outline-none focus:text-gray-600">
+                {/* Signo mas */}
                 <svg
                   className="h-5 w-5"
                   fill="none"
@@ -39,10 +40,10 @@ const Cart = () => {
                 >
                   <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                +
               </button>
               <span className="text-gray-700 mx-2">Cantidad</span>
               <button className="text-gray-500 focus:outline-none focus:text-gray-600">
+                {/* Signo menos */}
                 <svg
                   className="h-5 w-5"
                   fill="none"
@@ -54,7 +55,6 @@ const Cart = () => {
                 >
                   <path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                -
               </button>
             </div>
           </div>

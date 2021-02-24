@@ -67,7 +67,7 @@ const Home = () => {
     setInput(product);
     console.log("soy product---->", product);
     await axios
-      .get(`http://localhost:3001/api/search?q=${query}&${product}`)
+      .get(`http://localhost:3001/api/search?q=${query}`)
       .then((p) => {
         console.log("soy la info----->", p);
         setProducts(p.data);
@@ -102,8 +102,8 @@ const Home = () => {
   const [condition, setCondition] = useState("");
   const [sort, setSort] = useState("");
 
-  const sortProducts = (event) => {
-    const sort = event.target.value;
+  const sortProducts = (e) => {
+    const sort = e.target.value;
     setSort(sort);
     setProducts(
       products
@@ -124,8 +124,8 @@ const Home = () => {
     );
   };
 
-  const filterProducts = (event) => {
-    let productCondition = event.target.value;
+  const filterProducts = (e) => {
+    let productCondition = e.target.value;
 
     if (productCondition === "new" || productCondition === "used") {
       setCondition(productCondition);
@@ -230,7 +230,11 @@ const Home = () => {
         //addToCart={addToCart}
         error={error}
       />
-      <Modal style={customStyles} isOpen={modalIsOpen}>
+      <Modal 
+        style={customStyles} 
+        isOpen={modalIsOpen}
+        ariaHideApp={false}
+      >
         <div className="flex items-center justify-between ">
           <button
             onClick={() => SetModalIsOpen(false)}

@@ -51,16 +51,15 @@ export default cartReducer;
 
 // ------------- ACTIONS ------------------------------------
 
-export const addToCartAction = (product) => async (dispatch, getState) => {
-	try {
-		const res = await axios.get(`http://localhost:3001/api/search?q=${product}`)
-		dispatch({
-			type: ADD_ITEM_CART,
-			payload: res.data.results
-		})
-	} catch (error) {
-		alert('Algo salio mal')
-		console.log(error)
+export const addToCartAction = (payload) =>  (dispatch, getState) => {
+	const cart = JSON.parse(localStorage.getItem('cart'));
+	if (cart[payload.id]) cart[payload.id] = cart[payload.id] + payload.quantity;
+	else cart[payload.id] = payload.quantity;
+	localStorage.setItem('cart', JSON.stringify(cart));
+	
+	return {
+		type: ADD_ITEM_CART,
+		payload
 	}
 	
 }
