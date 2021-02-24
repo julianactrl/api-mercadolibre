@@ -6,9 +6,7 @@ server.get("/api/search", cache(60), (req, res) => {
   const product = req.query.q;
   const regex = /-I./;
 
-  axios
-    .get(`https://api.mercadolibre.com/sites/MLA/search?q=${product}`)
-
+  axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${product}`)
     .then((product) => {
       const result = product.data.results;
       if (result.length > 0) {
