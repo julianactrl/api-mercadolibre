@@ -27,7 +27,7 @@ const Category = ({ searchCategory, categories }) => {
           <span>
             <svg
               className="fill-current h-4 w-4 transform group-hover:-rotate-180
-              transition duration-150 ease-in-out"
+              transition duration-150 ease-in-out text-gray-600"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
             >

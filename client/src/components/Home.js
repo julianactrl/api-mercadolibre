@@ -30,7 +30,7 @@ const Home = () => {
   const pagination = (pageNumber) => setCurrentPage(pageNumber);
 
   // ----- SEARCHBAR ------------------------------------------//
-  const [search, setSearch] = useState('')
+  
   const [query, setQuery] = useState('tv')
 
   useEffect(() => {
@@ -40,8 +40,8 @@ const Home = () => {
   const onSearch = async (product) => {
     setInput(product);
     console.log("soy product---->", product);
-    const element = await axios
-      .get(`http://localhost:3001/api/search?q=${query}||${product}`)
+    await axios
+      .get(`http://localhost:3001/api/search?q=${query}&${product}`)
       .then((p) => {
         console.log("soy la info----->", p);
         setProducts(p.data);
@@ -124,7 +124,7 @@ const Home = () => {
                 <img className="w-30 h-20" src={mla} alt="logo mla"/>
               </div>
               <div className="w-full text-gray-700 md:text-center text-2xl font-semibold">
-                <SearchBar onSearch={onSearch} />
+                <SearchBar onSearch={onSearch} setQuery={setQuery} />
               </div>
               <div className="flex items-center justify-end w-full">
                 

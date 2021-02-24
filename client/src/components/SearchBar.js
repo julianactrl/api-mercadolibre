@@ -1,26 +1,32 @@
-//Un formulario controlado con un input de búsqueda, que dispare los requests a la 
+//Un formulario controlado con un search de búsqueda, que dispare los requests a la 
 // API (a nuestro BACK-END, no a Mercado Libre).
 
 import React, { useState } from 'react';
 
-const SearchBar = ({onSearch}) => {
-    const [input, setInput] = useState("");
+const SearchBar = ({onSearch, setQuery}) => {
+    const [search, setSearch] = useState("");
 
+    const updateSearch = e => {
+        setSearch(e.target.value)
+    }
+
+    const getSearch = e =>{
+        e.preventDefault()
+        onSearch(search)
+        setQuery(search)
+        setSearch('')
+    }
     return (
         
         <form 
-        onSubmit={(e) => {
-            e.preventDefault();
-            onSearch(input);
-            setInput("");
-        }}
+        onSubmit={getSearch}
         className="relative mt-6 max-w-lg mx-auto">
                 <input 
                 className="w-full border-none shadow-xl p-2 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline" 
                 placeholder="Buscar productos, marcas y más…"
                 type="text"
-                onChange={(e) => setInput(e.target.value)}
-                value={input}
+                onChange={updateSearch}
+                value={search}
                 />
                 <span className="absolute border-l-2 inset-y-0 right-2 pl-3 flex items-center">
                     <svg className="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
