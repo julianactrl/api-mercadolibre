@@ -1,89 +1,68 @@
-import React, { Fragment } from "react";
+import React from "react";
 
-const Cart = ({ cartItems, removeFromCart }) => {
+// ----- Hooks react-redux ----------
+import { useDispatch, useSelector } from 'react-redux'
+
+const Cart = () => {
+
+    const cart = useSelector(store => store.cart.array)
+
+    const dispatch = useDispatch()
+
   return (
-    <Fragment >
+    <>
       <div className="flex justify-center">
-        <h3 className="text-2xl font-medium text-gray-700">Your cart</h3>    
+        <h3 className="text-2xl font-medium text-gray-700">Your cart</h3>
       </div>
       <hr className="my-3" />
-      {cartItems.length === 0 ? (
-            <div>Cart is empty</div>
-          ) : (
-            <div>Your cart have {cartItems.length} different items !</div>
-        )}
+
       <div className="flex justify-between mt-6">
-      {cartItems.length !== 0 && (<div className="container">
-              Total: ${" "}
-              {Intl.NumberFormat("de-DE").format(
-                cartItems.reduce(
-                  (acc, curr) => acc + curr.price * curr.count,
-                  0
-                )
-              )}
-              {" ARS"}
-            </div>
-        )}
         <div className="flex">
-            <>
-            {cartItems.length > 0 ? (
-            <>
-                        {cartItems.map((item) => (
-                            <img
-                                className="h-20 w-20 object-cover rounded"
-                                src={item.thumbnail}
-                                alt="producto"
-                            />
-                    <>
-                        <div className="mx-3">
-                        <h3 className="text-sm text-gray-600">{item.title}</h3>
-                        <div className="flex items-center mt-2">
-                        <button className="text-gray-500 focus:outline-none focus:text-gray-600">
-                            <svg
-                            className="h-5 w-5"
-                            fill="none"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            >
-                            <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </button>
-                        <span className="text-gray-700 mx-2">Quantity: {item.count}</span>
-                        <button className="text-gray-500 focus:outline-none focus:text-gray-600">
-                            <svg
-                            className="h-5 w-5"
-                            fill="none"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            >
-                            <path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </button>
-                        </div>
-                    </div>
-                    </div>
-                    <span className="text-gray-600">
-                        Price: ${" "}
-                        {Intl.NumberFormat("de-DE").format(item.price)}{" "}
-                        {item.currency_id}
-                    </span>
-                    </>
-                    
-                </>
-                
-                )}
-            </>
-        
+          <img
+            className="h-20 w-20 object-cover rounded"
+            src="{item.thumbnail}"
+            alt="producto imagen"
+          />
+
+          <div className="mx-3">
+            <h3 className="text-sm text-gray-600">Producto Titulo</h3>
+            <div className="flex items-center mt-2">
+              <button className="text-gray-500 focus:outline-none focus:text-gray-600">
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                +
+              </button>
+              <span className="text-gray-700 mx-2">Cantidad</span>
+              <button className="text-gray-500 focus:outline-none focus:text-gray-600">
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                -
+              </button>
+            </div>
+          </div>
         </div>
-
-
-
+        <span className="text-gray-600">
+            $$
+        </span>
+      </div>
 
       <div className="mt-8"></div>
       <a className="flex items-center justify-center mt-4 px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
@@ -100,7 +79,7 @@ const Cart = ({ cartItems, removeFromCart }) => {
           <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
         </svg>
       </a>
-    </Fragment>
+    </>
   );
 };
 

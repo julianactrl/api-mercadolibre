@@ -6,14 +6,12 @@
 // su condicion.
 // si tiene stock o no.
 import React from "react";
-import { useHistory } from 'react-router-dom'
+
 
 const ProductCard = (props) => {
-    let history = useHistory();
+    
 
-   const handleClick = () => {
-    history.push("/productdetail");
-  }
+   
   return (
     <div className="p-10">
     
@@ -34,7 +32,6 @@ const ProductCard = (props) => {
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><b>Condition</b>: {props.condition}</span>
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><b>Stock</b>: {props.available_quantity}</span>
         <button 
-        onClick={handleClick}
         className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><i className="fas fa-shopping-cart text-blue"></i></button>
       </div>
     </div>

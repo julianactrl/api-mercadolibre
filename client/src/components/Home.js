@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "react-modal";
 
+// ----- Hooks react-redux ----------
+import { useDispatch, useSelector } from 'react-redux'
+
 // ---- componentes ---------
 import Catalogo from "./Catalogo";
 import Footer from "./Footer";
@@ -15,6 +18,13 @@ import Cart from "./Cart";
 import mla from "./assets/mla.png";
 
 const Home = () => {
+
+  // --------------REDUX -------------------------------
+
+  const cart = useSelector(store => store.cart.array)
+
+  const dispatch = useDispatch()
+  
   //---------------MODAL -------------------------------
   const [modalIsOpen, SetModalIsOpen] = useState(false);
 
@@ -131,25 +141,25 @@ const Home = () => {
   };
 
   //-----------ADD TO CART ----------------------------------------
-  const [cartItems, setCartItems] = useState([]);
-  const itemsCart = cartItems.slice();
+  // const [cartItems, setCartItems] = useState([]);
+  // const itemsCart = cartItems.slice();
 
-  const addToCart = (product) => {
-    let alreadyInCart = false;
-    itemsCart.forEach((item) => {
-      if (item.id === product.id) {
-        item.count++;
-        alreadyInCart = true;
-      }
-    });
-    if (!alreadyInCart) {
-      itemsCart.push({ ...product, count: 1 });
-    }
-    setCartItems(itemsCart);
-  };
-  const removeFromCart = (product) => {
-    setCartItems(itemsCart.filter((x) => x.id !== product.id));
-  };
+  // const addToCart = (product) => {
+  //   let alreadyInCart = false;
+  //   itemsCart.forEach((item) => {
+  //     if (item.id === product.id) {
+  //       item.count++;
+  //       alreadyInCart = true;
+  //     }
+  //   });
+  //   if (!alreadyInCart) {
+  //     itemsCart.push({ ...product, count: 1 });
+  //   }
+  //   setCartItems(itemsCart);
+  // };
+  // const removeFromCart = (product) => {
+  //   setCartItems(itemsCart.filter((x) => x.id !== product.id));
+  // };
 
   return (
     <>
@@ -217,7 +227,7 @@ const Home = () => {
 
       <Catalogo
         products={currentProducts}
-        addToCart={addToCart}
+        //addToCart={addToCart}
         error={error}
       />
       <Modal style={customStyles} isOpen={modalIsOpen}>
@@ -240,7 +250,8 @@ const Home = () => {
           </button>
         </div>
 
-        <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
+        <Cart  />
+        {/* cartItems={cartItems} removeFromCart={removeFromCart} */}
       </Modal>
 
       <Pagination
