@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Labs Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+En este proyecto el objetivo fue construir un Front-End y un Back-End que interactue con la API pública de Mercado Libre.
 
-## Available Scripts
+De ella vamos se extraejeron publicaciones que luego se  guarda en el back-end usando un caché. Para el Fron-end se desarrolló una serie de Componentes de React para poder mostrar e interactuar con las publicaciones antes mencionadas.
 
-In the project directory, you can run:
 
-### `npm start`
+## Back-End
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Se utilizo el siguiente endpoint de Mercado Libre https://api.mercadolibre.com/sites/MLA/search?q={query}. Recibe un queryString con el parámetro q con un string que indica el keyword a buscar.\
+Tecnologías usar para el back: node js, express js, axios y memory caché.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Front-End
 
-### `npm test`
+Es una apilicación creada en react con hooks y redux, axios, react-router-dom, tailwinds, react-modal npm.\
+Se emplearon los siguientes componentes:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `SearchBar`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Un formulario controlado con un input de búsqueda, que dispare los requests a la API (a nuestro BACK-END, no a Mercado Libre).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `Product Card`
 
-### `npm run eject`
+En este componente se muestra un producto en particular, debemos mostrar:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    su imagen.
+    su titulo.
+    su precio (con la moneda).
+    su condicion.
+    si tiene stock o no.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### `Catalogo`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Este componente va mostrar un arreglo de productos (obtenidos de la API) usando Product Card. Tambien debe posibilitar:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    Poder ordenar los productos en base a su precio, de forma ascendete o descendente.
+    Poder filtrar por condicion.
+    Poder páginar los resultados de a 30 productos por página.
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

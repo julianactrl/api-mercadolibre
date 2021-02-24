@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Modal from "react-modal";
 
 // ---- componentes ---------
 import Catalogo from "./Catalogo";
@@ -8,11 +9,26 @@ import SearchBar from "./SearchBar";
 import Pagination from "./Pagination";
 import Filter from "./Filter";
 import Category from "./Category";
+import Cart from "./Cart";
 
 // ----------IMAGEN --------------
-import mla from './assets/mla.png'
+import mla from "./assets/mla.png";
 
 const Home = () => {
+  //---------------MODAL -------------------------------
+  const [modalIsOpen, SetModalIsOpen] = useState(false);
+
+  const customStyles = {
+    content: {
+      top: "0",
+      left: "70%",
+      right: "0",
+      // bottom: 'auto',
+      marginRight: "%",
+      // transform: 'translate(-50%, -50%)'
+    },
+  };
+
   // ------------ ERRORS -----------------------------//
   const [error, setError] = useState(false);
   // ------------ PRODUCTS -----------------------------//
@@ -25,17 +41,17 @@ const Home = () => {
   const [productsPerPage] = useState(30);
 
   const indexLastProduct = currentPage * productsPerPage;
-  const indexFirtsProduct = indexLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexFirtsProduct, indexLastProduct);
+  const indexFirstProduct = indexLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
   const pagination = (pageNumber) => setCurrentPage(pageNumber);
 
   // ----- SEARCHBAR ------------------------------------------//
-  
-  const [query, setQuery] = useState('tv')
+
+  const [query, setQuery] = useState("tv");
 
   useEffect(() => {
-    onSearch()
-  }, [query])
+    onSearch();
+  }, [query]);
 
   const onSearch = async (product) => {
     setInput(product);
@@ -58,8 +74,8 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    searchCategory()
-  }, [])
+    searchCategory();
+  }, []);
 
   const searchCategory = async () => {
     await axios
@@ -114,6 +130,27 @@ const Home = () => {
     }
   };
 
+  //-----------ADD TO CART ----------------------------------------
+  const [cartItems, setCartItems] = useState([]);
+  const itemsCart = cartItems.slice();
+
+  const addToCart = (product) => {
+    let alreadyInCart = false;
+    itemsCart.forEach((item) => {
+      if (item.id === product.id) {
+        item.count++;
+        alreadyInCart = true;
+      }
+    });
+    if (!alreadyInCart) {
+      itemsCart.push({ ...product, count: 1 });
+    }
+    setCartItems(itemsCart);
+  };
+  const removeFromCart = (product) => {
+    setCartItems(itemsCart.filter((x) => x.id !== product.id));
+  };
+
   return (
     <>
       <div style={{ background: `#fee600` }}>
@@ -121,14 +158,12 @@ const Home = () => {
           <div className="container mx-auto px-6 py-3">
             <div className="flex items-center justify-between">
               <div className="hidden w-full text-gray-600 md:flex md:items-center">
-                <img className="w-30 h-20" src={mla} alt="logo mla"/>
+                <img className="w-30 h-20" src={mla} alt="logo mla" />
               </div>
               <div className="w-full text-gray-700 md:text-center text-2xl font-semibold">
                 <SearchBar onSearch={onSearch} setQuery={setQuery} />
               </div>
               <div className="flex items-center justify-end w-full">
-                
-
                 <div className="flex sm:hidden">
                   <button
                     type="button"
@@ -158,30 +193,56 @@ const Home = () => {
                 filterProducts={filterProducts}
                 input={input}
               />
-              <button className="text-gray-800 focus:outline-none mx-4 sm:mx-0">
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                </button>
+
+              <button
+                onClick={() => SetModalIsOpen(true)}
+                className="text-gray-800 focus:outline-none mx-4 sm:mx-0"
+              >
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+              </button>
             </nav>
           </div>
         </header>
       </div>
 
-      
       <Catalogo
         products={currentProducts}
-        //addToCart={addToCart}
+        addToCart={addToCart}
         error={error}
       />
+      <Modal style={customStyles} isOpen={modalIsOpen}>
+        <div className="flex items-center justify-between ">
+          <button
+            onClick={() => SetModalIsOpen(false)}
+            className="focus:outline-none modal-close px-2 bg-blue-600 p-2 rounded text-white hover:bg-blue-500"
+          >
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
+      </Modal>
+
       <Pagination
         productsPerPage={productsPerPage}
         totalProducts={products.length}

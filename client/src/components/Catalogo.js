@@ -31,7 +31,7 @@ const Catalogo = ({ products, addToCart, error }) => {
                   thumbnail={product.thumbnail}
                   condition={product.condition}
                   permalink={product.permalink}
-                  //addToCart={() => addToCart(product)}
+                  addToCart={() => addToCart(product)}
                 />
                 );
               })}
