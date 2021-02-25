@@ -12,25 +12,22 @@ import { useToasts } from 'react-toast-notifications';
 
 const ProductCard = (props) => {
 
-  const cart = useSelector(store => store.cart.array)
+  const carrito = useSelector(store => store.cart.array)
   const dispatch = useDispatch();
   const { addToast } = useToasts();
 
 	const handleClick = () => {
-		if (!cart[props.title] && cart[props.title] !== 0) {
-			let productToDispatch = { ...cart.array }
-			productToDispatch.quantity += 1;
-			dispatch(addToCartAction(productToDispatch));
+		if (!carrito[props.title] && carrito[props.title] !== 0) {
 			let payload = {
 				id: props.id,
 				quantity: 1,
 				stock: props.available_quantity
 			}
+      dispatch(addToCartAction(payload))
       console.log('SOY PAYLOAD ---->', payload)
-			addToast(`${props.title}`, { appearance: 'success' })
-
+			addToast(`El producto ${props.title} se agrego con exito`, { appearance: 'success' })
 		} else {
-			dispatch()
+			console.log('No esta funcionando tu idea')
 		}
 	};
    
