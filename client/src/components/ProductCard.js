@@ -23,7 +23,7 @@ const ProductCard = (props) => {
 			dispatch(addToCartAction(productToDispatch));
 			let payload = {
 				id: props.id,
-				quantity: props.quantity,
+				quantity: 1,
 				stock: props.available_quantity
 			}
       console.log('SOY PAYLOAD ---->', payload)

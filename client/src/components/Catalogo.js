@@ -24,6 +24,7 @@ const Catalogo = ({ products, addToCart, error }) => {
               return (
                 <ProductCard 
                   key={product.id}
+                  id={product.id}
                   title={product.title}
                   price={product.price}
                   currency_id={product.currency_id}

@@ -67,7 +67,7 @@ const Home = () => {
     setInput(product);
     console.log("soy product---->", product);
     await axios
-      .get(`http://localhost:3001/api/search?q=${query}&${product}`)
+      .get(`http://localhost:3001/api/search?q=${query}`)
       .then((p) => {
         console.log("soy la info----->", p);
         setProducts(p.data);
@@ -140,27 +140,7 @@ const Home = () => {
     }
   };
 
-  //-----------ADD TO CART ----------------------------------------
-  // const [cartItems, setCartItems] = useState([]);
-  // const itemsCart = cartItems.slice();
-
-  // const addToCart = (product) => {
-  //   let alreadyInCart = false;
-  //   itemsCart.forEach((item) => {
-  //     if (item.id === product.id) {
-  //       item.count++;
-  //       alreadyInCart = true;
-  //     }
-  //   });
-  //   if (!alreadyInCart) {
-  //     itemsCart.push({ ...product, count: 1 });
-  //   }
-  //   setCartItems(itemsCart);
-  // };
-  // const removeFromCart = (product) => {
-  //   setCartItems(itemsCart.filter((x) => x.id !== product.id));
-  // };
-
+  
   return (
     <>
       <div style={{ background: `#fee600` }}>
@@ -227,7 +207,6 @@ const Home = () => {
 
       <Catalogo
         products={currentProducts}
-        //addToCart={addToCart}
         error={error}
       />
       <Modal 
@@ -254,8 +233,10 @@ const Home = () => {
           </button>
         </div>
 
-        <Cart  />
-        {/* cartItems={cartItems} removeFromCart={removeFromCart} */}
+        <Cart  
+          products={currentProducts}
+        />
+        
       </Modal>
 
       <Pagination
