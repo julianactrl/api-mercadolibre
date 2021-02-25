@@ -6,11 +6,33 @@
 // su condicion.
 // si tiene stock o no.
 import React from "react";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCartAction } from '../redux/cartDucks';
+import { useToasts } from 'react-toast-notifications';
 
 const ProductCard = (props) => {
-    
 
+  const cart = useSelector(store => store.cart.array)
+  const dispatch = useDispatch();
+  const { addToast } = useToasts();
+
+	const handleClick = () => {
+		if (!cart[props.title] && cart[props.title] !== 0) {
+			let productToDispatch = { ...cart.array }
+			productToDispatch.quantity += 1;
+			dispatch(addToCartAction(productToDispatch));
+			let payload = {
+				id: props.id,
+				quantity: props.quantity,
+				stock: props.available_quantity
+			}
+      console.log('SOY PAYLOAD ---->', payload)
+			addToast(`${props.title}`, { appearance: 'success' })
+
+		} else {
+			dispatch()
+		}
+	};
    
   return (
     <div className="p-10">
@@ -32,7 +54,10 @@ const ProductCard = (props) => {
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><b>Condition</b>: {props.condition}</span>
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><b>Stock</b>: {props.available_quantity}</span>
         <button 
-        className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><i className="fas fa-shopping-cart text-blue"></i></button>
+          onClick={handleClick}
+          className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <i className="fas fa-shopping-cart text-blue"></i>
+        </button>
       </div>
     </div>
     </div>

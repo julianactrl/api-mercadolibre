@@ -67,7 +67,7 @@ const Home = () => {
     setInput(product);
     console.log("soy product---->", product);
     await axios
-      .get(`http://localhost:3001/api/search?q=${query}`)
+      .get(`http://localhost:3001/api/search?q=${query}&${product}`)
       .then((p) => {
         console.log("soy la info----->", p);
         setProducts(p.data);

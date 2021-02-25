@@ -26,40 +26,50 @@
 // 				}
 // 			}
 
-import axios from 'axios'
 // -------- CONSTANTS------------------------------
-export const ADD_ITEM_CART = 'ADD_ITEM_CART'
-export const DELETE_ITEM_CART = 'DELETE_ITEM_CART'
-
+export const ADD_ITEM_CART = "ADD_ITEM_CART";
+export const DELETE_ITEM_CART = "DELETE_ITEM_CART";
 
 // ----- ESTADO INICIAL -------
 const initialState = {
-	array: [],
+  array: [],
 };
 
 // ----------- REDUCER ----------------------------------
 const cartReducer = (state = initialState, action) => {
-	switch (action.type) {
-		case ADD_ITEM_CART:
-			return {...state, array: action.payload}
-		default: 
-			return state;
-	}
-}
+  switch (action.type) {
+    case ADD_ITEM_CART:
+      return { ...state, array: action.payload };
+    default:
+      return state;
+  }
+};
 
 export default cartReducer;
 
 // ------------- ACTIONS ------------------------------------
 
-export const addToCartAction = (payload) =>  (dispatch, getState) => {
-	const cart = JSON.parse(localStorage.getItem('cart'));
-	if (cart[payload.id]) cart[payload.id] = cart[payload.id] + payload.quantity;
-	else cart[payload.id] = payload.quantity;
-	localStorage.setItem('cart', JSON.stringify(cart));
-	
-	return {
-		type: ADD_ITEM_CART,
-		payload
-	}
-	
-}
+export const addToCartAction = (state = initialState) => (
+  dispatch,
+  getState
+) => {
+  const itemsCart = state.array
+  const addToCart = (product) => {
+    let alreadyInCart = false;
+    itemsCart.forEach((item) => {
+      if (item.id === product.id) {
+        item.count++;
+        alreadyInCart = true;
+      }
+    });
+    if (!alreadyInCart) {
+      itemsCart.push({ ...product, count: 1 });
+    }
+    state.array(itemsCart);
+  };
+
+  return {
+    type: ADD_ITEM_CART,
+	addToCart
+  };
+};

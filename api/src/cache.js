@@ -9,7 +9,6 @@ const cache = duration => {
             return
         } else {
             res.sendResponse = res.send
-            console.log("no estoy en el cache")
             res.send = body => {
                 memocache.put(key, body, duration * 1000)
                 res.sendResponse(body)

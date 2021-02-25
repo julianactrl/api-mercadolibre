@@ -6,6 +6,8 @@ import Home from './components/Home';
 import {Provider} from 'react-redux'
 import generateStore from './redux/store'
 
+import { ToastProvider } from 'react-toast-notifications';
+
 function App() {
 
   const store = generateStore()
@@ -15,7 +17,9 @@ function App() {
       <Router>
             <Switch>
               <Provider store={store}>
-                <Route exact path="/" component={Home} />
+                <ToastProvider>
+                  <Route exact path="/" component={Home} />
+                </ToastProvider>
               </Provider>
             </Switch>
         </Router> 
