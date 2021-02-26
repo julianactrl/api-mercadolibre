@@ -1,4 +1,3 @@
-import axios from 'axios'
 // -------- CONSTANTS------------------------------
 export const ADD_ITEM_CART = "ADD_ITEM_CART";
 export const DELETE_ITEM_CART = "DELETE_ITEM_CART";
@@ -8,13 +7,14 @@ const initialState = {
   array: [],
 };
 
+// localStorage
+
+
 // ----------- REDUCER ----------------------------------
 const cartReducer = (state = initialState, action) => {
-  switch (action.type) {
-    
+  switch (action.type) { 
     case ADD_ITEM_CART:
-      return { array: [...state.array, action.payload]};
-      
+      return { array: [...state.array, action.payload]};  
     default:
       return state;
   }

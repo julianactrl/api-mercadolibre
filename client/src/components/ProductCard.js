@@ -20,8 +20,10 @@ const ProductCard = (props) => {
 		if (!carrito[props.title] && carrito[props.title] !== 0) {
 			let payload = {
 				id: props.id,
-				quantity: 1,
-				stock: props.available_quantity
+        title: props.title,
+        img: props.thumbnail,
+        price: props.price,
+				stock: props.available_quantity,
 			}
       dispatch(addToCartAction(payload))
       console.log('SOY PAYLOAD ---->', payload)

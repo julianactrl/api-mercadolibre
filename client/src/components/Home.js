@@ -3,7 +3,7 @@ import axios from "axios";
 import Modal from "react-modal";
 
 // ----- Hooks react-redux ----------
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 
 // ---- componentes ---------
 import Catalogo from "./Catalogo";
@@ -18,20 +18,19 @@ import Cart from "./Cart";
 import mla from "./assets/mla.png";
 
 const Home = () => {
-
   // --------------REDUX -------------------------------
 
-  const cart = useSelector(store => store.cart.array)
+  const cart = useSelector((store) => store.cart.array);
 
-  const dispatch = useDispatch()
-  
+  const dispatch = useDispatch();
+
   //---------------MODAL -------------------------------
   const [modalIsOpen, SetModalIsOpen] = useState(false);
 
   const customStyles = {
     content: {
       top: "0",
-      left: "70%",
+      left: "40%",
       right: "0",
       // bottom: 'auto',
       marginRight: "%",
@@ -98,7 +97,7 @@ const Home = () => {
       });
   };
 
-  // ----------- FILTRO -------------------------------//
+  // ----------- FILTROS -------------------------------//
   const [condition, setCondition] = useState("");
   const [sort, setSort] = useState("");
 
@@ -140,7 +139,6 @@ const Home = () => {
     }
   };
 
-  
   return (
     <>
       <div style={{ background: `#fee600` }}>
@@ -205,15 +203,8 @@ const Home = () => {
         </header>
       </div>
 
-      <Catalogo
-        products={currentProducts}
-        error={error}
-      />
-      <Modal 
-        style={customStyles} 
-        isOpen={modalIsOpen}
-        ariaHideApp={false}
-      >
+      <Catalogo products={currentProducts} error={error} />
+      <Modal style={customStyles} isOpen={modalIsOpen} ariaHideApp={false}>
         <div className="flex items-center justify-between ">
           <button
             onClick={() => SetModalIsOpen(false)}
@@ -233,10 +224,7 @@ const Home = () => {
           </button>
         </div>
 
-        <Cart  
-          products={currentProducts}
-        />
-        
+        <Cart products={currentProducts} error={error}/>
       </Modal>
 
       <Pagination

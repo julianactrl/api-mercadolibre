@@ -8,7 +8,7 @@ import React from "react";
 import ProductCard from "./ProductCard";
 
 
-const Catalogo = ({ products, addToCart, error }) => {
+const Catalogo = ({ products, error }) => {
 
   
   return (
@@ -32,7 +32,7 @@ const Catalogo = ({ products, addToCart, error }) => {
                   thumbnail={product.thumbnail}
                   condition={product.condition}
                   permalink={product.permalink}
-                  addToCart={() => addToCart(product)}
+                  //addToCart={() => addToCart(product)}
                 />
                 );
               })}
