@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 
 // ----- Hooks react-redux ----------
-import {  useSelector } from "react-redux";
-
+import { useSelector } from "react-redux";
 
 const Cart = ({ error }) => {
-
   //Redux
-  const carrito = useSelector((store) => store.cart.array);
-  
+  const carrito = useSelector((store) => store.cart.cartItems);
+
   // Boton de cantidad
-  const [ quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = useState(0);
 
   return (
     <>
@@ -32,23 +30,24 @@ const Cart = ({ error }) => {
 
               <div className="mx-3">
                 <h3 className="text-sm text-gray-600">{p.title}</h3>
-                <div className="flex items-center mt-2">  
-                    {p.stock > 0 && (
-                      <select 
+                <div className="flex items-center mt-2">
+                  {p.stock > 0 && (
+                    <select
                       value={quantity}
-                      onChange={e => setQuantity(e.target.value)}
-                      className="text-gray-700 mx-2">
-                        { [...Array(p.stock).keys()].map(x => (
-                            <option value={x + 1} key={x + 1}>{x + 1}</option>
-                        ))}
-                      </select>
-                     )}
+                      onChange={(e) => setQuantity(e.target.value)}
+                      className="text-gray-700 mx-2"
+                    >
+                      {[...Array(p.stock).keys()].map((x) => (
+                        <option value={x + 1} key={x + 1}>
+                          {x + 1}
+                        </option>
+                      ))}
+                    </select>
+                  )}
                 </div>
               </div>
             </div>
-            <span className="text-gray-600">
-              ${p.price}
-            </span>
+            <span className="text-gray-600">${p.price}</span>
           </div>
         ))
       )}

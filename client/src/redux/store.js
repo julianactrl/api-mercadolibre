@@ -7,6 +7,12 @@ const rootReducer = combineReducers({
     cart: cartReducer
 }) 
 
+const cartIemsFromLocalStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
+
+const initialState = {
+    cart: { cartIems: cartIemsFromLocalStorage}
+}
+
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ )|| compose;
 
 export default function generateStore(){

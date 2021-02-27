@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "react-modal";
 
-// ----- Hooks react-redux ----------
-import { useDispatch, useSelector } from "react-redux";
-
 // ---- componentes ---------
 import Catalogo from "./Catalogo";
 import Footer from "./Footer";
@@ -18,19 +15,13 @@ import Cart from "./Cart";
 import mla from "./assets/mla.png";
 
 const Home = () => {
-  // --------------REDUX -------------------------------
-
-  const cart = useSelector((store) => store.cart.array);
-
-  const dispatch = useDispatch();
-
   //---------------MODAL -------------------------------
   const [modalIsOpen, SetModalIsOpen] = useState(false);
 
   const customStyles = {
     content: {
       top: "0",
-      left: "40%",
+      left: "60%",
       right: "0",
       // bottom: 'auto',
       marginRight: "%",
@@ -40,6 +31,7 @@ const Home = () => {
 
   // ------------ ERRORS -----------------------------//
   const [error, setError] = useState(false);
+
   // ------------ PRODUCTS -----------------------------//
   const [products, setProducts] = useState([]);
   const [productsResult, setProductsResult] = useState([]);
@@ -59,7 +51,7 @@ const Home = () => {
   const [query, setQuery] = useState("tv");
 
   useEffect(() => {
-    onSearch();
+    onSearch()
   }, [query]);
 
   const onSearch = async (product) => {
@@ -152,7 +144,7 @@ const Home = () => {
                 <SearchBar onSearch={onSearch} setQuery={setQuery} />
               </div>
               <div className="flex items-center justify-end w-full">
-                <div className="flex sm:hidden">
+                {/* <div className="flex sm:hidden">
                   <button
                     type="button"
                     className="text-blue-600 hover:text-gray-500 focus:outline-none focus:text-gray-500"
@@ -165,7 +157,7 @@ const Home = () => {
                       ></path>
                     </svg>
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
             <nav className="sm:flex sm:justify-center sm:items-center mt-4">
@@ -202,7 +194,6 @@ const Home = () => {
           </div>
         </header>
       </div>
-
       <Catalogo products={currentProducts} error={error} />
       <Modal style={customStyles} isOpen={modalIsOpen} ariaHideApp={false}>
         <div className="flex items-center justify-between ">
@@ -223,10 +214,8 @@ const Home = () => {
             </svg>
           </button>
         </div>
-
-        <Cart products={currentProducts} error={error}/>
+        <Cart products={currentProducts} error={error} />
       </Modal>
-
       <Pagination
         productsPerPage={productsPerPage}
         totalProducts={products.length}
