@@ -32,7 +32,7 @@ const Catalogo = ({ products, error }) => {
                   thumbnail={product.thumbnail}
                   condition={product.condition}
                   permalink={product.permalink}
-                  //addToCart={() => addToCart(product)}
+                  rate={product.rate}                  
                 />
                 );
               })}

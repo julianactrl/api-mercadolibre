@@ -14,7 +14,11 @@ import Cart from "./Cart";
 // ----------IMAGEN --------------
 import mla from "./assets/mla.png";
 
+import { useToasts } from "react-toast-notifications";
+
 const Home = () => {
+
+  const { addToast } = useToasts();
   //---------------MODAL -------------------------------
   const [modalIsOpen, SetModalIsOpen] = useState(false);
 
@@ -53,22 +57,38 @@ const Home = () => {
   useEffect(() => {
     onSearch()
   }, [query]);
+  console.log(query)
 
   const onSearch = async (product) => {
-    setInput(product);
-    console.log("soy product---->", product);
-    await axios
-      .get(`http://localhost:3001/api/search?q=${query}`)
+    try{
+      setInput(product);
+      await axios.get(`http://localhost:3001/api/search?q=${query}`)
+      
       .then((p) => {
-        console.log("soy la info----->", p);
+        console.log("soy la info----->",p);
         setProducts(p.data);
         setProductsResult(p.data);
         setError(false);
       })
-      .catch((err) => {
+    } catch(err) {
         console.log("soy el error----------->>>", err);
         setError(true);
-      });
+        addToast(`Algo salio mal`, {
+          appearance: "error",
+        });
+    }
+    
+    // console.log("soy product---->", product);
+    
+    //   .then((p) => {
+    //     console.log("soy la info----->", p);
+    //     setProducts(p.data);
+    //     setProductsResult(p.data);
+    //     setError(false);
+    //   })
+    //   .catch((err) => {
+        
+    //   });
   };
 
   //-------- CATEGORIES ------------------------------//
@@ -144,20 +164,7 @@ const Home = () => {
                 <SearchBar onSearch={onSearch} setQuery={setQuery} />
               </div>
               <div className="flex items-center justify-end w-full">
-                {/* <div className="flex sm:hidden">
-                  <button
-                    type="button"
-                    className="text-blue-600 hover:text-gray-500 focus:outline-none focus:text-gray-500"
-                    aria-label="toggle menu"
-                  >
-                    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
-                      <path
-                        fillRule="evenodd"
-                        d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-                      ></path>
-                    </svg>
-                  </button>
-                </div> */}
+              
               </div>
             </div>
             <nav className="sm:flex sm:justify-center sm:items-center mt-4">

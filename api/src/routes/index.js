@@ -2,6 +2,7 @@ const server = require("express").Router();
 const axios = require("axios");
 const { cache } = require("../cache");
 
+
 server.get("/api/search", cache(60), (req, res) => {
   const product = req.query.q;
   const regex = /-I./;
@@ -10,6 +11,7 @@ server.get("/api/search", cache(60), (req, res) => {
     .get(`https://api.mercadolibre.com/sites/MLA/search?q=${product}`)
     .then((product) => {
       const result = product.data.results;
+      console.log(result)
       if (result.length > 0) {
         let products = result.map((product) => {
           return {
@@ -21,8 +23,10 @@ server.get("/api/search", cache(60), (req, res) => {
             thumbnail: product.thumbnail.replace(regex, "-O."),
             condition: product.condition,
             permalink: product.permalink,
+            rate: product.installments.rate
           };
         });
+        console.log(products)
         res.status(200).send(products);
       } else {
         throw "Product not found.";
