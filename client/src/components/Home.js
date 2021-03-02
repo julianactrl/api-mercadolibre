@@ -59,37 +59,23 @@ const Home = () => {
   }, [query]);
   console.log(query)
 
-  const onSearch = async (product) => {
-    try{
-      setInput(product);
-      await axios.get(`http://localhost:3001/api/search?q=${query}`)
-      
-      .then((p) => {
+  const onSearch =  (product) => {
+    setInput(product);
+    axios.get(`http://localhost:3001/api/search?q=${query}`)
+    .then((p) => {
         console.log("soy la info----->",p);
         setProducts(p.data);
         setProductsResult(p.data);
         setError(false);
       })
-    } catch(err) {
+    .catch(err => {
         console.log("soy el error----------->>>", err);
         setError(true);
         addToast(`Algo salio mal`, {
           appearance: "error",
         });
-    }
-    
-    // console.log("soy product---->", product);
-    
-    //   .then((p) => {
-    //     console.log("soy la info----->", p);
-    //     setProducts(p.data);
-    //     setProductsResult(p.data);
-    //     setError(false);
-    //   })
-    //   .catch((err) => {
-        
-    //   });
-  };
+    })
+  }
 
   //-------- CATEGORIES ------------------------------//
   const [categories, setCategories] = useState([]);
