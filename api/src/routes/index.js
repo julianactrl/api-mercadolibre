@@ -3,7 +3,7 @@ const axios = require("axios");
 const { cache } = require("../cache");
 
 
-server.get("/api/search", cache(60), (req, res) => {
+server.get("/api/search", cache(10), (req, res) => {
   const product = req.query.q;
   const regex = /-I./;
 
@@ -11,7 +11,7 @@ server.get("/api/search", cache(60), (req, res) => {
     .get(`https://api.mercadolibre.com/sites/MLA/search?q=${product}`)
     .then((product) => {
       const result = product.data.results;
-      console.log(result)
+      
       if (result.length > 0) {
         let products = result.map((product) => {
           return {
@@ -26,7 +26,7 @@ server.get("/api/search", cache(60), (req, res) => {
             rate: product.installments.rate
           };
         });
-        console.log(products)
+        
         res.status(200).send(products);
       } else {
         throw "Product not found.";
@@ -37,7 +37,7 @@ server.get("/api/search", cache(60), (req, res) => {
     });
 });
 
-server.get("/api/categories", cache(20), (req, res) => {
+server.get("/api/categories", cache(10), (req, res) => {
   axios
     .get("https://api.mercadolibre.com/sites/MLA/categories")
     .then(({ data }) => {

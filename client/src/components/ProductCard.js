@@ -64,7 +64,7 @@ const ProductCard = (props) => {
           >
             <i className="fas fa-shopping-cart text-blue"></i>
           </button>
-         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <b>Rate</b>: {Intl.NumberFormat("de-DE").format(props.rate)}</span>
+         {/* <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <b>Rate</b>: {Intl.NumberFormat("de-DE").format(props.rate)}</span> */}
         </div>
       </div>
     </div>
